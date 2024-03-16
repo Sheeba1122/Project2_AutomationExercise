@@ -1,6 +1,9 @@
-package project2;
+package automatioExercise;
+
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class AddProductInCart_ID {
@@ -15,5 +18,16 @@ public class AddProductInCart_ID {
 	@FindBy(xpath="//*[text()='Men > Tshirts']//following::*[@class='cart_price'][1]") WebElement p2price;
 	@FindBy(xpath="//*[text()='Men > Tshirts']//following::*[@class='cart_quantity'][1]") WebElement p2quantity;
 	@FindBy(xpath="//*[text()='Men > Tshirts']//following::*[@class='cart_total'][1]") WebElement item2totalprice;
+	@FindBy(xpath="//*[text()='Blue Top']") WebElement item1;
+	@FindBy(xpath="//*[text()='Men > Tshirts']") WebElement item2;
+	@FindBy(xpath="//*[text()=' Home']") WebElement homepage;
 	
+/*	public FirefoxDriver driver = new FirefoxDriver();
+	
+	public void launchApp(String url) {
+		
+		driver.get(url);
+		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}*/
 }

@@ -1,5 +1,7 @@
-package project2;
+package automatioExercise;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
@@ -18,7 +20,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-public class AddProductInCart {
+public class AddProductInCart extends AddProductInCart_ID {
 	public FirefoxDriver driver;
 	
 	
@@ -33,9 +35,9 @@ public class AddProductInCart {
 	
 	@Test(priority=1)
 	public void addProduct() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
 		AddProductInCart_ID p = PageFactory.initElements(driver, AddProductInCart_ID.class);
+		p.homepage.isEnabled();
+		System.out.println(p.homepage + ": " + p.homepage.getText());
 		p.productpage.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		p.product1.click();
@@ -50,13 +52,12 @@ public class AddProductInCart {
 		}
 	@Test(priority=2)
 	public void productprice() {
-		boolean item1 = driver.findElement(By.xpath("//*[text()='Blue Top']")).isDisplayed();
-		Assert.assertEquals(item1,true);
-		System.out.println(item1);
-		boolean item2 = driver.findElement(By.xpath("//*[text()='Men > Tshirts']")).isDisplayed();
-		Assert.assertEquals(item2,true);
-		System.out.println(item2);
+		
 		AddProductInCart_ID p = PageFactory.initElements(driver, AddProductInCart_ID.class);
+		AssertJUnit.assertEquals(p.item1,true);
+		System.out.println(p.item1);
+		AssertJUnit.assertEquals(p.item2,true);
+		System.out.println(p.item2);
 		System.out.println(p.p1price.isDisplayed() + ": Item1 price is Displayed");
 		System.out.println(p.p1quantity.isDisplayed() + ": Item2 price is Displayed");
 		System.out.println(p.item1totalprice.isDisplayed() + ": Item1 quantity is Displayed");
@@ -64,6 +65,8 @@ public class AddProductInCart {
 		System.out.println(p.p2quantity.isDisplayed() + ": Item1 totalprice is Displayed");
 		System.out.println(p.item2totalprice.isDisplayed() + ": Item2 totalprice is Displayed");
 		}
+	
+	
 	@AfterTest
 	public void closeApp() {
 		driver.close();
