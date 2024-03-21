@@ -187,13 +187,7 @@ public class Login {
 			}
 			driver.close();
 			}
-			
-			@Test(priority=6)
-			public void contactUs() throws Exception {
-			Login_ID p = PageFactory.initElements(driver, Login_ID.class);
-			
-			}
-			
+					
 			@AfterMethod
 			public void closeApp() {
 				driver.close();
