@@ -1,0 +1,2 @@
+**Description:** It offers a range of test cases for practicing automation testing to simulate real-world scenarios, such as registering a user, logging in with correct or incorrect credentials, logging out, contacting customer support, verifying different pages, searching for products, scrolling functionalities, adding product reviews, managing product quantity in the cart, and placing orders with various checkout methods.
+**Tools and Technologies:** Selenium, Java, OOPs, TestNG, POM, Git, GitHub, Data Driven.
