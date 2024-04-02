@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -13,8 +14,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class TestCasePage {
-	public FirefoxDriver driver;
-	@FindBy(xpath="//*[@href='/test_cases']") WebElement textcasepage;
+	public WebDriver driver;
+	
 	
 	@BeforeMethod
 	public void launchapp() {
@@ -27,12 +28,10 @@ public class TestCasePage {
 	
 	@Test
 	public void testCasePage() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
-		TestCasePage p = PageFactory.initElements(driver, TestCasePage.class);
+		TestCasePageID p = PageFactory.initElements(driver, TestCasePageID.class);
+		System.out.println(p.homepage.isDisplayed() + " : " + p.homepage.getText());
 		p.textcasepage.click();
-		boolean testcases = driver.findElement(By.xpath("//*[@href='/test_cases']")).isEnabled();
-		System.out.println(testcases + ": " + driver.findElement(By.xpath("//*[@href='/test_cases']")).getText());
+		System.out.println(p.textcasepage.isDisplayed() + " : " + p.textcasepage.isEnabled() + " : " + p.textcasepage.getText());
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	

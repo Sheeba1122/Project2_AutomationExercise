@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
 
 
 public class ProductPage {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	
 	@BeforeTest
@@ -30,14 +31,15 @@ public class ProductPage {
 	}
 	@Test(priority=1)
 	public void productpage() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
 		ProductPage_ID p = PageFactory.initElements(driver, ProductPage_ID.class);
+		System.out.println(p.homepage.isDisplayed() + " : "  + p.homepage.isEnabled() + " : " + "Homepage is visible" );
 		p.productpage.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		boolean allproducts = driver.findElement(By.xpath("//*[text()='All Products']")).isEnabled();
-		System.out.println(allproducts + ": " + driver.findElement(By.xpath("//*[text()='All Products']")).getText());
-		List<WebElement> productlist = driver.findElements(By.xpath("//*[@alt='ecommerce website products']/following::p"));
+		System.out.println(p.allproducts.isDisplayed() + " : " + p.allproducts.getText() + " : " + p.allproducts.isEnabled());
+		
+		List<WebElement> productlist = p.productlist; //driver.findElements(By.xpath("//*[@alt='ecommerce website products']/following::p"));
+		
+		
 		for(WebElement plist : productlist) {
 			System.out.println(plist.getText());
 		}
@@ -46,20 +48,15 @@ public class ProductPage {
 	public void productDetails() {
 		ProductPage_ID p = PageFactory.initElements(driver, ProductPage_ID.class);
 		p.product1.click();
-		boolean productdetails = driver.findElement(By.xpath("//*[text()='Blue Top']")).isEnabled();
-		System.out.println(productdetails + ": " + driver.findElement(By.xpath("//*[text()='Blue Top']")).getText());
-		System.out.println(p.pname.isDisplayed());
-		System.out.println(p.pname.getText());
-		System.out.println(p.pcategory.isDisplayed());
-		System.out.println(p.pcategory.getText());
-		System.out.println(p.pprice.isDisplayed());
-		System.out.println(p.pprice.getText());
-		System.out.println(p.pavailability.isDisplayed());
-		System.out.println(p.pavailability.getText());
-		System.out.println(p.pconditions.isDisplayed());
-		System.out.println(p.pconditions.getText());
-		System.out.println(p.pbrand.isDisplayed());
-		System.out.println(p.pbrand.getText());
+		
+		System.out.println(p.productdetails.isDisplayed() + " : " + p.productdetails.getText() + " : " + "Product details visible");
+		System.out.println(p.pname.isDisplayed() + " : " + p.pname.getText() + ": " + "Product name is visible");
+		System.out.println(p.pcategory.isDisplayed() + " : " + p.pcategory.getText() + ": " + "Product category is visible" );
+		System.out.println(p.pprice.isDisplayed() + " : " + p.pprice.getText() +  " : " + "Product price is visible");
+		System.out.println(p.pavailability.isDisplayed() + " : " + p.pavailability.getText() + " : " + "Product availability");
+		System.out.println(p.pconditions.isDisplayed() + " : " + p.pconditions.getText() + " : " + "Product condition");
+		System.out.println(p.pbrand.isDisplayed() + " : " + p.pbrand.getText() + " : " + "Product brand visible");
+		
 	}
 	@AfterTest
 	public void closeApp() {

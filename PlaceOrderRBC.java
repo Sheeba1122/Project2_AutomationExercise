@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class PlaceOrderRBC {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	
 	@BeforeTest
@@ -28,9 +29,8 @@ public class PlaceOrderRBC {
 	
 	@Test(priority=1)
 	public void loginpage(){
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
 		PlaceOrderRBC_ID p =PageFactory.initElements(driver, PlaceOrderRBC_ID.class);
+		System.out.println(p.homepage.isDisplayed() + " : " + p.homepage.getText() + " : " + p.homepage.isEnabled());
 		p.login.click();
 		p.name.sendKeys("Test");
 		p.emailid.sendKeys("testcheck7899@gmail.com");
@@ -62,9 +62,9 @@ public class PlaceOrderRBC {
 		p.mobnumber.sendKeys("1234567891");
 		p.createaccbtn.click();
 		p.continu.click();
-		boolean logged = driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).isDisplayed();
+		boolean logged;
 		if(logged=true) {
-			System.out.println(logged + " "+ driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).getText());
+			System.out.println(p.logged.isDisplayed() + " : "+ p.logged.getText());
 			}
 		else {
 			System.out.println("Not displayed");
@@ -94,18 +94,16 @@ public class PlaceOrderRBC {
 		p.expiryyear.sendKeys("2028");
 		p.payandconfirm.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	 	boolean orderplaced= driver.findElement(By.xpath("//*[text()='Order Placed!']")).isDisplayed();
-		boolean orderplacedmsg= driver.findElement(By.xpath("//*[text()='Congratulations! Your order has been confirmed!']")).isDisplayed();
-		System.out.println(orderplaced + ": " + orderplacedmsg );
+		System.out.println(p.orderplaced.isDisplayed() + " : " + p.orderplaced.getText() + " : " + p.orderplacedmsg.isDisplayed() + " : " + p.orderplacedmsg.getText());
 		p.continu.click();
 	}
 		@Test(priority=4)
 		public void deleteAccount() {
 		PlaceOrderRBC_ID p =PageFactory.initElements(driver, PlaceOrderRBC_ID.class);
 		p.delacc.click();
-		boolean delact =driver.findElement(By.xpath("//*[text()='Account Deleted!']")).isDisplayed();
+		boolean delact;
 		if(delact=true) {
-			System.out.println(delact + " "+ driver.findElement(By.xpath("//*[text()='Account Deleted!']")).getText());
+			System.out.println(p.delact.isDisplayed() + " : " + p.delact.getText());
 			}
 		else {
 			System.out.println("Not displayed");

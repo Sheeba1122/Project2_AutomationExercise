@@ -8,5 +8,6 @@ public class RemoveProductFromCart_ID {
 	@FindBy(xpath="//*[@class='modal-dialog modal-confirm']//following::*[text()='View Cart']") WebElement viewcart;
 	@FindBy(xpath="//*[@data-product-id='1']") WebElement deleteitem;
 	@FindBy(xpath="//*[text()='Cart is empty!']") WebElement emptycart;
-	
+	@FindBy(xpath="//*[text()=' Home']") WebElement homepage;
+	@FindBy(xpath="//*[text()='Shopping Cart']") WebElement cartpage;
 }

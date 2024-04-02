@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -12,10 +13,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Scrolling_Pick_one {
-	@FindBy(xpath="//*[@id='slider-carousel']//following::*[@class='item active']") WebElement slider;
-	@FindBy(xpath="//*[contains(text(),'Full-Fledged practice website for Automation Engineers')]/ancestor::div[3]") WebElement slider1;
 	
-public FirefoxDriver driver;
+	
+public WebDriver driver;
 	
 	
 	@BeforeTest
@@ -30,7 +30,7 @@ public FirefoxDriver driver;
 	@Test(priority=1)
 	public void pickOneItem(){
 		
-		Scrolling_Pick_one p = PageFactory.initElements(driver, Scrolling_Pick_one.class);
+		Scrolling_Pick_oneID p = PageFactory.initElements(driver, Scrolling_Pick_oneID.class);
 		System.out.println(p.slider.getText());	//Printing all the text present in the carousel	
 		System.out.println("------------------------------");
 		System.out.println(p.slider1.getText()); //Printing all the text present in the carousel

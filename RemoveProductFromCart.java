@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class RemoveProductFromCart {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	
 	@BeforeMethod
@@ -27,13 +28,11 @@ public class RemoveProductFromCart {
 	
 	@Test(priority=2)
 	public void addTocart() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
 		RemoveProductFromCart_ID p =PageFactory.initElements(driver, RemoveProductFromCart_ID.class);
+		System.out.println(p.homepage.isDisplayed() + " : "  + p.homepage.getText() + " : " + p.homepage.isEnabled()); 
 		p.product1.click();
 		p.viewcart.click();
-		boolean cartpage = driver.findElement(By.xpath("//*[text()='Shopping Cart']")).isEnabled();
-		System.out.println(cartpage + "Cart Page is Displayed ");
+		System.out.println(p.cartpage.isDisplayed() + " : " + "Cart Page is Displayed ");
 		p.deleteitem.click();
 		System.out.println(p.emptycart.isDisplayed() + p.emptycart.getText());
 	}

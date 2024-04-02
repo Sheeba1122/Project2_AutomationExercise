@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,7 +22,7 @@ import org.testng.annotations.Test;
 
 
 public class AddProductInCart extends AddProductInCart_ID {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	
 	@BeforeTest
@@ -36,8 +37,8 @@ public class AddProductInCart extends AddProductInCart_ID {
 	@Test(priority=1)
 	public void addProduct() {
 		AddProductInCart_ID p = PageFactory.initElements(driver, AddProductInCart_ID.class);
-		p.homepage.isEnabled();
-		System.out.println(p.homepage + ": " + p.homepage.getText());
+	//	System.out.println(p.homepage.isDisplayed() + " : " + p.homepage.isEnabled() + " : " + p.homepage.getText());
+		Assert.assertEquals(p.homepage.isEnabled(), true);
 		p.productpage.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		p.product1.click();
@@ -54,7 +55,7 @@ public class AddProductInCart extends AddProductInCart_ID {
 	public void productprice() {
 		
 		AddProductInCart_ID p = PageFactory.initElements(driver, AddProductInCart_ID.class);
-		AssertJUnit.assertEquals(p.item1,true);
+		Assert.assertEquals(p.item1,true);
 		System.out.println(p.item1);
 		AssertJUnit.assertEquals(p.item2,true);
 		System.out.println(p.item2);

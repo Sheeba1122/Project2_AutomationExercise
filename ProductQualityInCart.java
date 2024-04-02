@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,15 +15,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class ProductQualityInCart {
-	public FirefoxDriver driver;
-	
-	@FindBy(xpath="//*[text()='View Product']") WebElement viewproduct;
-	@FindBy(id="quantity") WebElement quantity;
-	@FindBy(xpath="//*[@class='btn btn-default cart']//following::*[@class='fa fa-shopping-cart']") WebElement addtocart;
-	@FindBy(xpath="//*[@class='modal-dialog modal-confirm']//following::*[@href='/view_cart']") WebElement viewcart;
-	@FindBy(xpath="//*[text()='Blue Top']") WebElement product1;
-	@FindBy(xpath="//*[text()='4']")WebElement displayquantity;
-	@FindBy(xpath="//div[@class='modal-dialog modal-confirm']") WebElement popup;
+	public WebDriver driver;
 	
 	@BeforeTest
 	public void launchapp() {
@@ -34,9 +27,8 @@ public class ProductQualityInCart {
 		}
 	@Test(priority=1)
 	public void productQuality() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
-		ProductQualityInCart p = PageFactory.initElements(driver, ProductQualityInCart.class);
+		ProductQualityInCartID p = PageFactory.initElements(driver, ProductQualityInCartID.class);
+		System.out.println(p.homepage.isDisplayed() + " : "  + p.homepage.isEnabled() + " : " + "Homepage is visible" );
 		p.viewproduct.click();
 		p.quantity.clear();
 		p.quantity.sendKeys("4");
@@ -46,7 +38,7 @@ public class ProductQualityInCart {
 		}
 	@Test(priority=2)
 	public void viewCart() {
-		ProductQualityInCart p = PageFactory.initElements(driver, ProductQualityInCart.class);
+		ProductQualityInCartID p = PageFactory.initElements(driver, ProductQualityInCartID.class);
 		p.viewcart.click();
 		p.product1.isDisplayed();
 		System.out.println("Product is Displayed : "+ p.product1.getText());

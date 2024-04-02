@@ -1,17 +1,23 @@
 package automatioExercise;
 
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import jxl.Sheet;
@@ -19,10 +25,10 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 	public class Contact_Us {
-		public FirefoxDriver driver;
-		
+		public WebDriver driver;
 	
-	@BeforeMethod
+	
+	@BeforeTest
 	public void launchapp() {
 	System.setProperty("webdriver.FireFox", "C:\\Program Files\\Mozilla Firefox\\Firefox.exe");
 	driver = new FirefoxDriver();
@@ -35,13 +41,7 @@ import jxl.read.biff.BiffException;
 	public void contact_us() throws Exception, Exception {
 		Contact_Us_ID p = PageFactory.initElements(driver, Contact_Us_ID.class);
 		p.contactus.click();
-		boolean getintouch =driver.findElement(By.xpath("//*[text()='Get In Touch']")).isDisplayed();
-		if(getintouch=true) {
-			System.out.println(getintouch + ": "+ driver.findElement(By.xpath("//*[text()='Get In Touch']")).getText());
-			}
-		else {
-			System.out.println("Not displayed");
-		}
+		Assert.assertEquals(p.getintouch.isEnabled(),true);
 		FileInputStream f = new FileInputStream("F:\\AutomationTesting\\Assignments\\ProjectSelenium\\Project2\\Contact_us.xls");
 		Workbook wb = Workbook.getWorkbook(f); 
 		Sheet s = wb.getSheet("Sheet1");
@@ -54,18 +54,22 @@ import jxl.read.biff.BiffException;
 		driver.findElement(By.xpath(s.getCell(1, 5).getContents())).click();
 		Alert a = driver.switchTo().alert();
 		a.accept();
-		boolean successmsg =driver.findElement(By.xpath("//*[@class='status alert alert-success']")).isDisplayed();
+		boolean successmsg;
 		if(successmsg=true) {
-			System.out.println(successmsg + ": "+ driver.findElement(By.xpath("//*[@class='status alert alert-success']")).getText());
+			System.out.println(p.successmsg.isDisplayed() + " : " + p.successmsg.getText());
 			}
 		else {
 			System.out.println("Not displayed");
 		}
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		p.homepage.click();
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
+		Assert.assertEquals(p.homepage.isEnabled(),true);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	@AfterTest
+	public void closeApp() {
+		driver.close();
 	}
 	
 }

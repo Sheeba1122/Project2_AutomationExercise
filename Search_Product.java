@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Search_Product {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	
 	@BeforeTest
@@ -29,15 +30,13 @@ public class Search_Product {
 	}
 	@Test(priority=1)
 	public  void goToProductPage() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
 		Search_Product_ID p = PageFactory.initElements(driver, Search_Product_ID.class);
+		System.out.println(p.homepage.isDisplayed() + " : " +  p.homepage.getText());
 		p.productpage.click();
-		Alert a = driver.switchTo().alert();
-		a.accept();
+		//Alert a = driver.switchTo().alert();
+		//a.accept();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		boolean allproducts = driver.findElement(By.xpath("//*[text()='All Products']")).isEnabled();
-		System.out.println(allproducts + ": " + driver.findElement(By.xpath("//*[text()='All Products']")).getText());
+		System.out.println(p.allproducts.isDisplayed() + ": " + p.allproducts.getText());
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 	}
@@ -52,9 +51,9 @@ public class Search_Product {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		je.executeScript("window.scrollBy(500, 500);");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		boolean searchedproduct =driver.findElement(By.xpath("//*[text()='Searched Products']")).isDisplayed();
+		boolean searchedproduct;
 		if(searchedproduct=true) {
-			System.out.println(searchedproduct + ": "+ driver.findElement(By.xpath("//*[text()='Searched Products']")).getText());
+			System.out.println(p.searchedproduct.isDisplayed() + ": "+ p.searchedproduct.getText());
 			}
 		else {
 			System.out.println("Not displayed");

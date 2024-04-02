@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,8 +15,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class ScrollUpUsingArrow {
-	public FirefoxDriver driver;
-	@FindBy(id="scrollUp") WebElement scrollup;
+	public WebDriver driver;
+	
 	
 	public void launchapp() {
 	System.setProperty("webdriver.FireFox", "C:\\Program Files\\Mozilla Firefox\\Firefox.exe");
@@ -27,14 +28,12 @@ public class ScrollUpUsingArrow {
 	
 	@Test
 	public void scrollUpWithArrow() throws Exception{
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
+		ScrollUpUsingArrowID p = PageFactory.initElements(driver, ScrollUpUsingArrowID.class);
+		System.out.println(p.homepage.isDisplayed() + ": " + p.homepage.getText() + " : " + "Homepage is visible");
 		JavascriptExecutor je = (JavascriptExecutor) driver;
 		je.executeScript("window.scrollBy(60000, 60000);");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		boolean subscription = driver.findElement(By.xpath("//*[text()='Subscription']")).isEnabled();
-		System.out.println(subscription + ": " + driver.findElement(By.xpath("//*[text()='Subscription']")).getText());
-		ScrollUpUsingArrow p = PageFactory.initElements(driver, ScrollUpUsingArrow.class);
+		System.out.println(p.subscription.isDisplayed() + ": " + p.subscription.getText() + " : " + "Subscription Displayed");
 		p.scrollup.click();
 		String[] header = {"Full-Fledged practice website for Automation Engineers"};
 		for(String text : header) {

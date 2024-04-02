@@ -10,6 +10,9 @@ public class Login_ID {
 	@FindBy(name="name") WebElement name;
 	@FindBy(xpath="//h2[text()='New User Signup!']//following::input[@name='email']") WebElement emailid;
 	@FindBy(xpath="//*[text()='Signup']") WebElement btn;
+	@FindBy(name="email") WebElement email;
+	@FindBy(name="password") WebElement password;
+	@FindBy(xpath="//*[text()='Login']") WebElement loginbtn;
 	@FindBy(id="id_gender2") WebElement title;
 	@FindBy(id="days") WebElement Day;
 	@FindBy(id="password") WebElement psd;
@@ -28,4 +31,12 @@ public class Login_ID {
 	@FindBy(xpath="//*[@class='btn btn-primary']") WebElement continu;
 	@FindBy(xpath="//*[@href='/delete_account']") WebElement delacc;
 	@FindBy(xpath="//*[@href='/logout']") WebElement logout;
+	@FindBy(xpath="//*[text()='Enter Account Information']") WebElement eai;
+	@FindBy(xpath="//*[text()='Account Created!']") WebElement accc;
+	@FindBy(xpath="//*[contains(@class,'fa fa-user')]") WebElement logged;
+	@FindBy(xpath="//*[text()='Account Deleted!']") WebElement delact;
+	@FindBy(xpath="//*[text()='Login to your account']") WebElement loginacc;
+	@FindBy(xpath="//*[text()='Your email or password is incorrect!']") WebElement msg;
+	@FindBy(xpath="//*[text()='Email Address already exist!']") WebElement msg1;
+
 }

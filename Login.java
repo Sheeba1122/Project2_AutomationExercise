@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -20,7 +21,7 @@ import jxl.Workbook;
 
 
 public class Login {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	@BeforeMethod
 	public void launchapp() {
@@ -39,9 +40,9 @@ public class Login {
 		p.emailid.sendKeys("testcheck7899@gmail.com");
 		p.btn.click();
 		
-		boolean eai = driver.findElement(By.xpath("//*[text()='Enter Account Information']")).isDisplayed();
+		boolean eai; 
 		if(eai=true) {
-			System.out.println(eai + " " + driver.findElement(By.xpath("//*[text()='Enter Account Information']")).getText());
+			System.out.println(p.eai.isDisplayed() + p.eai.getText());
 		}
 		else {
 			System.out.println("Not displayed");
@@ -72,25 +73,25 @@ public class Login {
 		p.zipcode.sendKeys("411048");
 		p.mobnumber.sendKeys("1234567891");
 		p.createaccbtn.click();
-		boolean accc= driver.findElement(By.xpath("//*[text()='Account Created!']")).isDisplayed();
+		boolean accc;
 		if(accc=true) {
-			System.out.println(accc + " "+ driver.findElement(By.xpath("//*[text()='Account Created!']")).getText() );
+			System.out.println(p.accc.isDisplayed() + " : " + p.accc.getText());
 			}
 		else {
 			System.out.println("Not displayed");
 		}
 		p.continu.click();
-		boolean logged = driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).isDisplayed();
+		boolean logged;
 		if(logged=true) {
-			System.out.println(logged + " "+ driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).getText());
+			System.out.println(p.logged.isDisplayed() + " : " +p.logged.getText());
 			}
 		else {
 			System.out.println("Not displayed");
 		}
 		p.delacc.click();
-		boolean delact =driver.findElement(By.xpath("//*[text()='Account Deleted!']")).isDisplayed();
+		boolean delact;
 		if(delact=true) {
-			System.out.println(delact + " "+ driver.findElement(By.xpath("//*[text()='Account Deleted!']")).getText());
+			System.out.println(p.delact.isDisplayed() + " : " + p.delact.getText());
 			}
 		else {
 			System.out.println("Not displayed");
@@ -102,9 +103,9 @@ public class Login {
 		public void login_ValidUser() throws Exception {
 			Login_ID p = PageFactory.initElements(driver, Login_ID.class);
 			p.login.click();
-			boolean loginacc =driver.findElement(By.xpath("//*[text()='Login to your account']")).isDisplayed();
+			boolean loginacc;
 			if(loginacc=true) {
-				System.out.println(loginacc + " "+ driver.findElement(By.xpath("//*[text()='Login to your account']")).getText());
+				System.out.println(p.loginacc.isDisplayed() + " : "+ p.loginacc.getText());
 				}
 			else {
 				System.out.println("Not displayed");
@@ -115,9 +116,9 @@ public class Login {
 			driver.findElement(By.name(s.getCell(0, 0).getContents())).sendKeys(s.getCell(1, 0).getContents());
 			driver.findElement(By.name(s.getCell(0, 1).getContents())).sendKeys(s.getCell(1, 1).getContents());
 			driver.findElement(By.xpath(s.getCell(1, 2).getContents())).click();
-			boolean logged = driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).isDisplayed();
+			boolean logged;
 			if(logged=true) {
-				System.out.println(logged + " "+ driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).getText());
+				System.out.println(p.logged.isDisplayed() + " :  "+ p.logged.isEnabled() + " : "+ p.logged.getText());
 				}
 			else {
 				System.out.println("Not displayed");
@@ -129,13 +130,13 @@ public class Login {
 		public void login_InvalidUser() throws Exception {
 			Login_ID p = PageFactory.initElements(driver, Login_ID.class);
 			p.login.click();
-			driver.findElement(By.name("email")).sendKeys("testcheck7891@gmail.com");
-			driver.findElement(By.name("password")).sendKeys("Test789@");
-			driver.findElement(By.xpath("//*[text()='Login']")).click();
+			p.email.sendKeys("testcheck7891@gmail.com");
+			p.password.sendKeys("Test789@");
+			p.loginbtn.click();
 		
-		boolean msg = driver.findElement(By.xpath("//*[text()='Your email or password is incorrect!']")).isDisplayed();
+		boolean msg;
 		if(msg=true) {
-			System.out.println(msg + ": "+ driver.findElement(By.xpath("//*[text()='Your email or password is incorrect!']")).getText());
+			System.out.println(p.msg.isDisplayed() + " : " + p.msg.getText());
 			}
 		else {
 		System.out.println("Not displayed");
@@ -147,9 +148,9 @@ public class Login {
 		public void logout_User() throws Exception {
 		Login_ID p = PageFactory.initElements(driver, Login_ID.class);
 		p.login.click();
-		boolean loginacc =driver.findElement(By.xpath("//*[text()='Login to your account']")).isDisplayed();
+		boolean loginacc;
 		if(loginacc=true) {
-		System.out.println(loginacc + " "+ driver.findElement(By.xpath("//*[text()='Login to your account']")).getText());
+			System.out.println(p.loginacc.isDisplayed() + " : " + p.loginacc.getText());
 				}
 		else {
 				System.out.println("Not displayed");
@@ -160,9 +161,9 @@ public class Login {
 			driver.findElement(By.name(s.getCell(0, 0).getContents())).sendKeys(s.getCell(1, 0).getContents());
 			driver.findElement(By.name(s.getCell(0, 1).getContents())).sendKeys(s.getCell(1, 1).getContents());
 			driver.findElement(By.xpath(s.getCell(1, 2).getContents())).click();
-			boolean logged = driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).isDisplayed();
+			boolean logged; 
 			if(logged=true) {
-				System.out.println(logged + " "+ driver.findElement(By.xpath("//*[contains(@class,'fa fa-user')]")).getText());
+				System.out.println(p.logged.isDisplayed() + " : " + p.logged.getText());
 				}
 			else {
 				System.out.println("Not displayed");
@@ -178,9 +179,9 @@ public class Login {
 			p.name.sendKeys("Test");
 			p.emailid.sendKeys("testcheck789@gmail.com");
 			p.btn.click();
-			boolean msg1 = driver.findElement(By.xpath("//*[text()='Email Address already exist!']")).isDisplayed();
+			boolean msg1; 
 			if(msg1=true) {
-				System.out.println(msg1 + ": "+ driver.findElement(By.xpath("//*[text()='Email Address already exist!']")).getText());
+				System.out.println(p.msg1.isDisplayed() + p.msg1.getText());
 				}
 			else {
 				System.out.println("Not displayed");

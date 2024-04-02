@@ -22,12 +22,4 @@ public class AddProductInCart_ID {
 	@FindBy(xpath="//*[text()='Men > Tshirts']") WebElement item2;
 	@FindBy(xpath="//*[text()=' Home']") WebElement homepage;
 	
-/*	public FirefoxDriver driver = new FirefoxDriver();
-	
-	public void launchApp(String url) {
-		
-		driver.get(url);
-		driver.manage().window().maximize(); 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	}*/
 }

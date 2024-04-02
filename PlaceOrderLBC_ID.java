@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PlaceOrderLBC_ID {
+	@FindBy(xpath="//*[text()=' Home']") WebElement homepage;
 	@FindBy(xpath="//*[@href='/login']") WebElement login;
 	@FindBy(xpath="//*[@data-product-id='1']") WebElement product1;
 	@FindBy(xpath="//*[@class='modal-dialog modal-confirm']//following::*[text()='View Cart']") WebElement viewcart;
@@ -21,4 +22,8 @@ public class PlaceOrderLBC_ID {
 	@FindBy(xpath="//*[@id='submit']") WebElement payandconfirm;
 	@FindBy(xpath="//*[@href='/delete_account']") WebElement delacc;
 	@FindBy(xpath="//*[@class='btn btn-primary']") WebElement continu;
+	@FindBy(xpath="//*[contains(@class,'fa fa-user')]") WebElement logged;
+	@FindBy(xpath="//*[text()='Order Placed!']") WebElement orderplaced;
+	@FindBy(xpath="//*[text()='Congratulations! Your order has been confirmed!']") WebElement orderplacedmsg;
+	@FindBy(xpath="//*[text()='Account Deleted!']") WebElement delact;
 }

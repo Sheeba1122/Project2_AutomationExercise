@@ -42,5 +42,10 @@ public class PlaceOrderRWC_ID {
 	@FindBy(xpath="//*[@name='expiry_year']") WebElement expiryyear;
 	@FindBy(xpath="//*[@id='submit']") WebElement payandconfirm;
 	@FindBy(xpath="//*[@href='/delete_account']") WebElement delacc;
-	
+	@FindBy(xpath="//*[text()='Enter Account Information']") WebElement eai;
+	@FindBy(xpath="//*[text()='Account Created!']") WebElement accc;
+	@FindBy(xpath="//*[contains(@class,'fa fa-user')]") WebElement logged;
+	@FindBy(xpath="//*[text()='Order Placed!']") WebElement orderplaced;
+	@FindBy(xpath="//*[text()='Congratulations! Your order has been confirmed!']") WebElement orderplacedmsg;
+	@FindBy(xpath="//*[text()='Account Deleted!']") WebElement delact;
 }

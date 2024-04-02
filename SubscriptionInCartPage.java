@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class SubscriptionInCartPage {
-	public FirefoxDriver driver;
+	public WebDriver driver;
 	
 	@BeforeTest
 	public void launchapp() {
@@ -27,20 +28,19 @@ public class SubscriptionInCartPage {
 	
 	@Test
 	public void subscriptionInCart() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
-		SubscriptionInCartPage_ID p =PageFactory.initElements(driver, SubscriptionInCartPage_ID.class);
+		SubscriptionInCartPage_ID p = PageFactory.initElements(driver, SubscriptionInCartPage_ID.class);
+		System.out.println(p.homepage.isDisplayed() + " : "  + p.homepage.getText() + " : " + p.homepage.isEnabled()); 
 		p.cart.click();
 		JavascriptExecutor je = (JavascriptExecutor) driver;
 		je.executeScript("window.scrollBy(10000, 10000);");
-		boolean subscription = driver.findElement(By.xpath("//*[text()='Subscription']")).isEnabled();
-		System.out.println(subscription + ": " + driver.findElement(By.xpath("//*[text()='Subscription']")).getText());
+		
+		System.out.println(p.subscription.isDisplayed()+ " : " + p.subscription.getText());
 		p.email.sendKeys("testcheck789@gmail.com");
 		p.arrow.click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		boolean successmsg =driver.findElement(By.xpath("//*[contains(@class,'alert-success alert')]")).isDisplayed();
+		boolean successmsg;
 		if(successmsg=true) {
-			System.out.println(successmsg + ": "+ driver.findElement(By.xpath("//*[contains(@class,'alert-success alert')]")).getText());
+			System.out.println(p.successmsg.isDisplayed() + " : "+ p.successmsg.getText());
 			}
 		else {
 			System.out.println("Not displayed");

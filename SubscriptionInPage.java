@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,9 +15,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class SubscriptionInPage {
-	public FirefoxDriver driver;
-	@FindBy(id="susbscribe_email") WebElement email;
-	@FindBy(xpath="//*[contains(@class,'fa fa-arrow-circle-o-right')]") WebElement arrow;
+	public WebDriver driver;
+	
 	
 	
 	@BeforeTest
@@ -30,21 +30,19 @@ public class SubscriptionInPage {
 	
 	@Test
 	public void subscription() {
-		boolean homepage = driver.findElement(By.xpath("//*[text()=' Home']")).isEnabled();
-		System.out.println(homepage + ": " + driver.findElement(By.xpath("//*[text()=' Home']")).getText());
+		SubscriptionInPageID p =PageFactory.initElements(driver, SubscriptionInPageID.class);
+		System.out.println(p.homepage.isDisplayed() + ": " + p.homepage.getText());
 		JavascriptExecutor je = (JavascriptExecutor) driver;
 		je.executeScript("window.scrollBy(60000, 60000);");
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
-		boolean subscription = driver.findElement(By.xpath("//*[text()='Subscription']")).isEnabled();
-		System.out.println(subscription + ": " + driver.findElement(By.xpath("//*[text()='Subscription']")).getText());
-		SubscriptionInPage p =PageFactory.initElements(driver, SubscriptionInPage.class);
+		System.out.println(p.subscription.isDisplayed() + " : " + p.subscription.getText());
 		p.email.sendKeys("testcheck789@gmail.com");
 		je.executeScript("window.scrollBy(60000, 60000);");
 		p.arrow.click();
 		je.executeScript("window.scrollBy(60000, 60000);");
-		boolean successmsg =driver.findElement(By.xpath("//*[contains(@class,'alert-success alert')]")).isDisplayed();
+		boolean successmsg; 
 		if(successmsg=true) {
-			System.out.println(successmsg + ": "+ driver.findElement(By.xpath("//*[contains(@class,'alert-success alert')]")).getText());
+			System.out.println(p.successmsg.isDisplayed() + " : "+ p.successmsg.getText());
 			}
 		else {
 			System.out.println("Not displayed");

@@ -13,4 +13,5 @@ public class AddReviewOnProduct_ID {
 	@FindBy(xpath="//*[@id='review']") WebElement reviewtext; 
 	@FindBy(xpath="//*[@id='button-review']") WebElement reviewbutton;
 	@FindBy(xpath="//*[text()='Thank you for your review.']") WebElement reviewmsg;
+	@FindBy(xpath="//*[text()=' Home']") WebElement homepage;
 }
