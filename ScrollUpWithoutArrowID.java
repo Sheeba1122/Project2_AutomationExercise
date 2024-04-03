@@ -8,6 +8,6 @@ public class ScrollUpWithoutArrowID {
 
 	@FindBy(xpath="//*[text()=' Home']") WebElement homepage;
 	@FindBy(xpath="//*[text()='Subscription']") WebElement subscription;
-	
+	By Element = By.xpath("//*[text()=' Home']");
 	
 }

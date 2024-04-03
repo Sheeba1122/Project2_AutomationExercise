@@ -14,9 +14,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ScrollUpWithoutArrow {
+public class ScrollUpWithoutArrow extends ScrollUpWithoutArrowID{
 	public WebDriver driver;
-	By Element = By.xpath("//*[text()=' Home']");
+	
 	
 	
 	@BeforeTest
