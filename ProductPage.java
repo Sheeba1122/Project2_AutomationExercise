@@ -17,18 +17,17 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-public class ProductPage {
-	public WebDriver driver;
-	
+public class ProductPage extends ProductPage_ID {
 	
 	@BeforeTest
 	public void launchapp() {
-	System.setProperty("webdriver.FireFox", "C:\\Program Files\\Mozilla Firefox\\Firefox.exe");
-	driver = new FirefoxDriver();
-	driver.get("https://automationexercise.com");
-	driver.manage().window().maximize(); 
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	}
+		System.setProperty("webdriver.FireFox", "C:\\Program Files\\Mozilla Firefox\\Firefox.exe");
+		driver = new FirefoxDriver();
+		driver.get("https://automationexercise.com");
+		driver.manage().window().maximize(); 
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		}
+	
 	@Test(priority=1)
 	public void productpage() {
 		ProductPage_ID p = PageFactory.initElements(driver, ProductPage_ID.class);
@@ -58,8 +57,9 @@ public class ProductPage {
 		System.out.println(p.pbrand.isDisplayed() + " : " + p.pbrand.getText() + " : " + "Product brand visible");
 		
 	}
+	
 	@AfterTest
 	public void closeApp() {
-		driver.close();
+	driver.quit();
 	}
 }

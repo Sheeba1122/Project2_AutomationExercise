@@ -1,11 +1,17 @@
 package automatioExercise;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class ProductPage_ID {
+	public WebDriver driver;
+	
+	
 	@FindBy(xpath="//*[@href='/products']") WebElement productpage;
 	@FindBy(xpath="//*[@href='/product_details/1']") WebElement product1;
 	@FindBy(xpath="//*[text()='Blue Top']") WebElement pname;
@@ -18,4 +24,6 @@ public class ProductPage_ID {
 	@FindBy(xpath="//*[text()='All Products']") WebElement allproducts;
 	@FindBy(xpath="//*[@alt='ecommerce website products']/following::p") List<WebElement> productlist;
 	@FindBy(xpath="//*[text()='Blue Top']") WebElement productdetails;
+	
+	
 }

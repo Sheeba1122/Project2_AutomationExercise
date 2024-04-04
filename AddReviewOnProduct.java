@@ -2,29 +2,18 @@ package automatioExercise;
 
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
-public class AddReviewOnProduct {
-	public WebDriver driver;
+public class AddReviewOnProduct extends AddReviewOnProduct_ID {
 	
 	
 	@BeforeTest
-	public void launchapp() {
-	System.setProperty("webdriver.FireFox", "C:\\Program Files\\Mozilla Firefox\\Firefox.exe");
-	driver = new FirefoxDriver();
-	driver.get("https://automationexercise.com");
-	driver.manage().window().maximize(); 
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	public void startapp() {
+		AddReviewOnProduct_ID object = new AddReviewOnProduct_ID();
+		object.launchapp();
 	}
 	@Test
 	public void productpage() {
@@ -43,7 +32,7 @@ public class AddReviewOnProduct {
 		}
 	@AfterTest
 	public void closeApp() {
-		driver.close();
+		driver.quit();
 	}
 	
 	
